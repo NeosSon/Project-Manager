@@ -78,6 +78,8 @@ model User {
     tweets        Tweet[]
     Profile       Profile[]
     Post          Post[]
+    Project       Project[]
+    Task          Task[]
 }
 
 model Profile {
@@ -97,4 +99,27 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Project {
+    id          Int      @id @default(autoincrement())
+    title       String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    createdBy   User     @relation(fields: [createdById], references: [id])
+    createdById String
+    description String
+    Task        Task[]
+}
+
+model Task {
+    id          Int      @id @default(autoincrement())
+    title       String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    createdBy   User     @relation(fields: [createdById], references: [id])
+    createdById String
+    description String
+    projectId   Int      @default(autoincrement())
+    project     Project  @relation(fields: [projectId], references: [id])
 }

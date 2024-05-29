@@ -16,7 +16,7 @@ export const postRouter = createTRPCRouter({
     }),
 
   create: protectedProcedure
-    .input(z.object({ name: z.string().min(1) }))
+    .input(z.object({ name: z.string().min(1), content: z.string().min(1) })) // Add the 'content' property to the input object
     .mutation(async ({ ctx, input }) => {
       // simulate a slow db call
       await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -24,6 +24,7 @@ export const postRouter = createTRPCRouter({
       return ctx.db.post.create({
         data: {
           name: input.name,
+          content: input.content, // Include the 'content' property in the data object
           createdBy: { connect: { id: ctx.session.user.id } },
         },
       });
