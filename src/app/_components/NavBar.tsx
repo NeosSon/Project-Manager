@@ -11,7 +11,7 @@ const NavBar = () => {
   return (
     <div>
       <nav className="flex w-full items-center justify-between bg-gradient-to-b from-white to-[#ffffffc4] p-4 text-slate-950 shadow-md ">
-        <h1 className="text-xl">Project Manager</h1>
+        <h1 className="font-jersey text-xl">Project Manager</h1>
         <div className="flex">
           <Link
             href={session.data?.user ? "api/auth/signout" : "api/auth/signin"}
@@ -28,11 +28,8 @@ const NavBar = () => {
           />
         </div>
         {menuOpen && (
-          <div className="absolute right-0 top-16 rounded-lg bg-slate-100 p-4 flex flex-col">
-            <Link
-              href="/"
-              className="p-4 hover:rounded-lg hover:bg-slate-400"
-            >
+          <div className=" font-jersey absolute right-0 top-16 flex flex-col rounded-lg bg-slate-100 p-4">
+            <Link href="/" className="p-4 hover:rounded-lg hover:bg-slate-400">
               Home
             </Link>
             <Link

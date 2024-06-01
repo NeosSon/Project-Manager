@@ -79,8 +79,9 @@ const CreateTasks = () => {
               value={task.title}
               onChange={(e) => setTask((prev) => ({ ...prev, title: e.target.value }))}
             />
-            <input
-              type="text"
+            <textarea
+              rows={10}
+              cols={30}
               placeholder='Description'
               className='rounded-lg p-2'
               value={task.description}
@@ -98,9 +99,9 @@ const CreateTasks = () => {
       </form>
       
       {!isLoading && tasks.data?.map((task: any) => (
-        !isLoading ? <div key={task.id} className={lineThrough ? 'bg-white p-4 rounded-lg text-slate-950 line-through' : 'bg-white p-4 rounded-lg text-slate-950'}>
-          <h1>{task.title}</h1>
-          <p>{task.description}</p>
+        !isLoading ? <div key={task.id} className={lineThrough ? ' text-wrap bg-white p-4 rounded-lg text-slate-950 line-through w-full' : 'bg-white p-4 rounded-lg text-slate-950 w-full text-wrap'}>
+          <h1>Title: {task.title}</h1>
+          <p>Description: {task.description}</p>
           <p>Project Id: {task.projectId}</p>
           <input type="checkbox" name="task" value={task.id} onClick={() => setLineThrough(prev => !prev)} />
           <button
